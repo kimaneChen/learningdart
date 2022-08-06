@@ -1,7 +1,50 @@
+import 'dart:html';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 void main() {
+  test();
   runApp(const MyApp());
+}
+
+Stream<String> getName() {
+  return Stream.periodic(const Duration(seconds: 1), (value) {
+    return 'Kim Chen';
+  });
+}
+
+Future<int> heavyFutureThatMultipliesByTwo(int a) {
+  return Future.delayed(const Duration(seconds: 3), () => 3);
+}
+
+class Person {
+  final String name;
+  Person(this.name);
+  void run() {
+    print('$name is my name and I like running');
+  }
+
+  void breathe() {
+    print('breathing');
+  }
+}
+
+class Cat {
+  final String name;
+  Cat(this.name);
+}
+
+extension Run on Cat {
+  void run() {
+    print('Cat $name is running');
+  }
+}
+
+void test() async {
+  await for (final value in getName()) {
+    print(value);
+  }
 }
 
 class MyApp extends StatelessWidget {
