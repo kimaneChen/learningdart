@@ -1,15 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:dartz/dartz.dart';
-
-const _camelCase = 'loremIpSumDolorSitAmet';
-const _pascalCase = 'LoremIpSumDolorSitAmet';
-const _snakeCase = 'lorem_ipsum_dolor_sit_amet';
-const _kebabCase = 'lorem=ipsum-dolor-sit-amet';
-
-void main(List<String> args) {
-  print(snakeToPascal(_snakeCase));
-}
-
 List<String> capitalizeTail(List<String> values) =>
     [toLowerCase(head(values)), ...capitalizeWords(tail(values))];
 
@@ -50,3 +38,8 @@ Function composeN(List<Function> fns) {
 
 Function snakeToPascal =
     composeN([joinWithoutSpace, capitalizeWords, splitWithUnderscore]);
+
+Function snakeToCamel =
+    composeN([joinWithoutSpace, capitalizeTail, splitWithUnderscore]);
+
+Function snakeToKebab = composeN([joinWithHyphen, splitWithUnderscore]);
