@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,10 +7,16 @@ void main() {
   runApp(const MyApp());
 }
 
-Stream<String> getName() {
-  return Stream.periodic(const Duration(seconds: 1), (value) {
-    return 'Kim Chen';
-  });
+// Stream<String> getName() {
+//   return Stream.periodic(const Duration(seconds: 1), (value) {
+//     return 'Kim Chen';
+//   });
+// }
+
+Iterable<int> getOneTwoThree() sync* {
+  yield 1;
+  yield 2;
+  yield 3;
 }
 
 Future<int> heavyFutureThatMultipliesByTwo(int a) {
@@ -41,8 +46,8 @@ extension Run on Cat {
   }
 }
 
-void test() async {
-  await for (final value in getName()) {
+void test() {
+  for (final value in getOneTwoThree()) {
     print(value);
   }
 }
